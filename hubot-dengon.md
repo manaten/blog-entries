@@ -3,7 +3,7 @@ Hubotでいない人に伝言を残すスクリプト
 
 <a href="http://manaten.net/wp-content/uploads/2014/01/dengon_bot.png"><img src="http://manaten.net/wp-content/uploads/2014/01/dengon_bot.png" alt="dengon_bot" width="370" height="116" class="aligncenter size-full wp-image-887" /></a>
 
-IRCを使っていると、用がある人がいないが、メッセージを残せなくて困ることがたまにあったので作りました。
+IRCを使っていると、用がある人がいなくてメッセージを残せなくて困ることがたまにあったので作りました。
 
 <!-- more -->
 
