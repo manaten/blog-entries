@@ -6,27 +6,15 @@ tmuxのタブ名を今いるディレクトリのリポジトリ名にする
 
 <!-- more -->
 
-別の処理([ディレクトリ名のリポジトリ部分に下線を引くやつ](http://blog.manaten.net/entry/808))が混ざっていますが、precmdでリポジトリ名を```tmux rename-window```に渡すだけです。
+precmdでリポジトリ名を```tmux rename-window```に渡すだけです。
 ```sh
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git svn
-zstyle ':vcs_info:*' max-exports 3
-zstyle ':vcs_info:*' formats '%s:%b ' '%r' '%R'
+zstyle ':vcs_info:*' formats '%r'
 
 precmd () {
   LANG=en_US.UTF-8 vcs_info
-  psvar=()
-  [[ -n ${vcs_info_msg_0_} ]] && psvar[1]="$vcs_info_msg_0_"
-
-  if [[ -z ${vcs_info_msg_1_} ]] || [[ -z ${vcs_info_msg_2_} ]]; then
-    psvar[2]=$PWD
-  else
-    psvar[2]=`echo $vcs_info_msg_2_|sed -e "s#$vcs_info_msg_1_\\$##g"`
-    psvar[3]="$vcs_info_msg_1_"
-    psvar[4]=`echo $PWD|sed -e "s#^$vcs_info_msg_2_##g"`
-    
-    which tmux > /dev/null && tmux rename-window $vcs_info_msg_1_
-  fi
+  [[ -n ${vcs_info_msg_0_} ]] && tmux rename-window $vcs_info_msg_0_
 }
 ```
 [github](https://github.com/manaten/dotfiles/blob/master/.zshrc)
