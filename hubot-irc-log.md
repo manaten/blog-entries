@@ -2,7 +2,7 @@ HubotでIRCのログをとる
 =====
 <a href="http://manaten.net/wp-content/uploads/2014/01/hubot-irc-log.png"><img src="http://manaten.net/wp-content/uploads/2014/01/hubot-irc-log.png" alt="hubot-irc-log" width="623" height="96" class="aligncenter size-full wp-image-889" /></a>
 
-常駐しているbotにログの残らないIRCのログもとってもらいます。
+常駐しているbotにログの残らないIRCのログをとってもらいます。
 
 <!-- more -->
 
@@ -38,6 +38,7 @@ module.exports = (robot) ->
             mkdirp dir, log
         )
 ```
+[github](https://github.com/manaten/mana_bot/blob/master/scripts/log.coffee)
 
 robot.hearだと、pribmsgしか取得できないため、hubotのメソッドではなく、アダプタが利用しているnode-ircのonメソッドを用います。このメソッドでrawイベントをハンドリングすると、すべてのIRCメッセージが取得できるので、 コマンドの種類でswitch-whenし、記録したいコマンドだけファイルに書き出してあげます。
 
