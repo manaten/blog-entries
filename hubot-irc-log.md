@@ -40,6 +40,6 @@ module.exports = (robot) ->
 ```
 [github](https://github.com/manaten/mana_bot/blob/master/scripts/log.coffee)
 
-robot.hearだと、privmsgしか取得できないため、hubotのメソッドではなく、アダプタが利用しているnode-ircのonメソッドを用います。このメソッドでrawイベントをハンドリングすると、すべてのIRCメッセージが取得できるので、 コマンドの種類でswitch-whenし、記録したいコマンドだけファイルに書き出してあげます。
+robot.hearだと、privmsgしか取得できないため、hubotのメソッドではなく、アダプタが利用しているnode-ircのonメソッドを用います。このメソッドでrawイベントをハンドリングすると、すべてのIRCコマンドが取得できるので、 コマンドの種類でswitch-whenし、記録したいコマンドだけファイルに書き出してあげます。
 
 ほんとはログは完全なJSONで吐きたかったけれど、JSONは追記には向かなかったので、各行をJSON.stringifyしたものをカンマ改行区切りでつないでいくというややキモい形式で吐かせています。
