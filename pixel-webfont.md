@@ -1,7 +1,7 @@
 <a href="http://manaten.net/wp-content/uploads/2014/01/pixel-webfont.png"><img src="http://manaten.net/wp-content/uploads/2014/01/pixel-webfont.png" alt="pixel-webfont" width="479" height="243" class="aligncenter size-full wp-image-892" /></a>
 
 なにやらWebフォントという言葉をよく聞くようになりました。
-ドット絵をWebの一部で使うのに、役に立つかもと思ったので、試しにドット絵のWebフォントを作ってみました。
+僕も試してみたかったので、ドット絵のWebフォントを作ってみました。
 
 
 <!-- more -->
@@ -26,7 +26,15 @@ ABCDEFGHIJKLMNOPQRSTUVWXYZ
 アイウエオカキクケコサシスセソタチツテトナニヌネノ
 ハヒフヘホマミムメモヤユヨラリルレロワヲンァィゥェォャュョッ
 </pre>
-<div style="font-family: '8x8'; font-size: 24px; color: #EEE; border: 3px solid #EEE; padding: 10px; background: #222; border-radius: 4px;">おお まなてん よ。 しんでしまうとは なさけない</div>
+
+<div style="
+  font-family: '8x8';
+  font-size: 24px;
+  color: #EEE;
+  border: 3px solid #EEE;
+  padding: 10px;
+  background: #222;
+  border-radius: 4px;">おお まなてん よ。 しんでしまうとは なさけない</div>
 </div>
 
 IE9、Firefox、Chromeで表示できていることを確認しています。([今回作ったwoff形式のフォント](http://manaten.net/wp-content/uploads/2014/02/8x8.woff))
