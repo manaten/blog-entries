@@ -80,6 +80,7 @@ XMLの出力には[xmlbuilder-js](https://github.com/oozcitak/xmlbuilder-js)を�
   * Webフォントまでをプログラムで一発で吐けるようにしたい。
   * フォントの形式調べてそれをnodeで吐けるようにするのはだるかった。
   * IcoMoonAppが吐いたフォントを眺めた感じ、svg形式のフォントなら、手軽に吐けそうなので、とりあえずそれで吐けるようにしたい。
+  * 例えば｢ー｣を作り忘れてしまっていたりするのだけど、こういった加筆･修正は簡単にやりたいよね。
 
 # 参考リンク
 * [IcoMoon App](http://icomoon.io/app)
