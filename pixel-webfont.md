@@ -30,11 +30,11 @@ ABCDEFGHIJKLMNOPQRSTUVWXYZ
 <div style="
   font-family: '8x8';
   font-size: 24px;
-  color: #EEE;
+  color: red;
   border: 3px solid #EEE;
   padding: 10px;
   background: #222;
-  border-radius: 4px;">おお まなてん よ。 しんでしまうとは なさけない</div>
+  border-radius: 4px;">おきのどくですが ぼうけんのしょ 1 は きえてしまいました。</div>
 </div>
 
 IE9、Firefox、Chromeで表示できていることを確認しています。([今回作ったwoff形式のフォント](http://manaten.net/wp-content/uploads/2014/02/8x8.woff))
