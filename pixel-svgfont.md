@@ -23,6 +23,7 @@
 このsvgファイルはsvgフォントが利用可能なブラウザならそのまま利用可能ですし、[IcoMoonApp](http://icomoon.io/app/#/select)で他のwebフォントの形式に変換することも出来ます。
 
 <a href="http://manaten.net/wp-content/uploads/2014/02/icomoon4.png"><img src="http://manaten.net/wp-content/uploads/2014/02/icomoon4.png" alt="icomoon4" width="620" height="372" class="aligncenter size-full wp-image-902" /></a>
+
 svgフォントを直接読み込ませると、
 
 <a href="http://manaten.net/wp-content/uploads/2014/02/icomoon3.png"><img src="http://manaten.net/wp-content/uploads/2014/02/icomoon3.png" alt="icomoon3" width="742" height="484" class="aligncenter size-full wp-image-901" /></a>
