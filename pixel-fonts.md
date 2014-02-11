@@ -65,6 +65,7 @@ pre {
 	font-family: '6x6_fat';
 	font-size: 16px;
 	letter-spacing: -4px;
+	margin-top: -12px;
 
 }
 	</style>
