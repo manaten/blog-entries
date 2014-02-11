@@ -70,16 +70,6 @@ pre {
 	</style>
 </div>
 
-# 6x6_fat
-
-上のヘッダのロゴの下部のちっこい文字と同じフォント。
-そういうサブタイトルとかに向いてると思う。
-
-<pre class="_6x6_fat">
-1234567890!?.,()｢｣
-ABCDEFGHIJKLMNOPQRSTUVWXYZ
-</pre>
-
 # 8x8_bold
 
 太いの。タイトルとかに使えそう。
@@ -89,6 +79,16 @@ ABCDEFGHIJKLMNOPQRSTUVWXYZ
 ABCDEFGHIJKLMNOPQRSTUVWXYZ
 </pre>
 
+
+# 6x6_fat
+
+上のヘッダのロゴの下部のちっこい文字と同じフォント。
+そういうサブタイトルとかに向いてると思います。
+
+<pre class="_6x6_fat">
+1234567890!?.,()｢｣
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+</pre>
 
 # 8x8_border
 
