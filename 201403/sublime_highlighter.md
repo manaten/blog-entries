@@ -1,6 +1,6 @@
-<a href="http://manaten.net/wp-content/uploads/2014/03/sublime_highlighter_2.png"><img src="http://manaten.net/wp-content/uploads/2014/03/sublime_highlighter_2.png" alt="sublime_highlighter_2" width="850" height="648" class="aligncenter size-full wp-image-931" /></a>
+<a href="http://manaten.net/wp-content/uploads/2014/03/sublime_highlighter_2.png"><img src="http://manaten.net/wp-content/uploads/2014/03/sublime_highlighter_2.png" alt="sublime_highlighter_2" width="425" height="324" class="aligncenter size-full wp-image-931" /></a>
 
-パワーポイントにコードを貼り付けたいとき、シンタックスハイライトを有効にしたいと思うことはよく有ります。
+パワーポイントにコードを貼り付けたいとき、シンタックスハイライトを有効にしたいと思うことは稀によく有ります。
 SublimeTextを用いてそれを行なう場合、[SublimeHighlight](https://github.com/n1k0/SublimeHighlight)というプラグインが便利です。
 
 <!-- more -->
