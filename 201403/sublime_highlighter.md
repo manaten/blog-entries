@@ -10,7 +10,7 @@ SublimeTextを用いてそれを行なう場合、[SublimeHighlight](https://git
 [リポジトリ](https://github.com/n1k0/SublimeHighlight)のREADMEに書いてあります。
 
 インストールには[PackageControlle](https://sublime.wbond.net/)が必要です。
-Ctrl+Shift+Pでコマンドパレットを開き、Repositoryとタイプすれば、 ｢PackageControlle:Add Repository｣のが出てくると思うので、Enterし```https://github.com/n1k0/SublimeHighlight/tree/python3``` を追加します。あとはいつもどおりにPackageControlle:installでSublimeHighlightをインストールできます。インストール後に再起動が必要です。
+Ctrl+Shift+Pでコマンドパレットを開きRepositoryとタイプすれば、 ｢PackageControlle:Add Repository｣のが出てくると思うので```https://github.com/n1k0/SublimeHighlight/tree/python3``` を追加します。あとはいつもどおりにPackageControlle:installでSublimeHighlightをインストールできます。インストール後に再起動が必要です。
 
 # 使い方
 
