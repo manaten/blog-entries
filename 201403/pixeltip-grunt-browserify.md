@@ -83,14 +83,12 @@ $(function() {
 
 [compass](http://compass-style.org)は```inline-image```を使うことで、CSSへの画像埋め込みをコンパイル時にやってくれます。
 
-## JavaScriptコードの分割記述
-[browserify](http://browserify.org/)を用いることで、JavaScriptを分割して記述できるようになりました。
+## JavaScriptのソースコード分割記述
+[browserify](http://browserify.org/)を用いることで、JavaScriptを分割して記述できるようになりました([こんなかんじ](https://github.com/manaten/pixel-tip/tree/master/src/coffee))。
 
-[browserify](http://browserify.org/)はnodejsのCommonJSスタイルで分割記述したJavaScriptのファイルをひとまとめにし、ブラウザで実行可能にしてくれるツールです。また、npmのモジュールもブラウザで実行可能にしてくれたりします。
+[browserify](http://browserify.org/)はnodejsのCommonJSスタイルで分割記述したJavaScriptのファイルをひとまとめにし、ブラウザで実行可能にしてくれるツールです。また、依存しているnpmのモジュールもブラウザで実行可能にしてくれたりします。
 
-クライアントサイドJavaScriptをモジュール分割して記述方法として、他に[concat](https://github.com/gruntjs/grunt-contrib-concat)を使って単につなげて上げる方法や、[RequireJS](requirejs.org)による分割が有りますが、個人的にはこれが一番しっくりきます。
-concatは当然構造を持っていないので、ある程度複雑なプロジェクトには不適ですし、RequireJSは非同期的にモジュールを読み込むのが主目的(全部ひとまとめにする方法もあるようですが)で、単に開発のためにモジュール分割してる場合には微妙かなと思っていた次第です。
-最近[browserify](http://browserify.org/)をよく耳にする用になったので、それを使ってみたくてこの修正をしました。
+クライアントサイドJavaScriptをモジュール分割して記述方法として、他に[concat](https://github.com/gruntjs/grunt-contrib-concat)を使って単につなげて上げる方法や、[RequireJS](requirejs.org)による分割が有りますが、concatは当然構造を持っていないので、ある程度複雑なプロジェクトには不適ですし、RequireJSは非同期的にモジュールを読み込むのが主目的(全部ひとまとめにする方法もあるようですが)で、単に開発のしやすさのためにモジュール分割してる場合には微妙かなと思っていた次第で、個人的にはこれが一番しっくりきています。
 
 ## ソースコードをCoffeeScriptに
 最近[CoffeeScript](http://coffeescript.org/)使いまくってますが、便利です。JavaScriptの良い所はそのままにシンタックスの改善がされているので、純粋にJavaScriptが好きな僕にとってはとても書きやすいです。ただ、短く書きすぎてしまいがちなので、あくまで個人開発のツールとして便利といった印象。
