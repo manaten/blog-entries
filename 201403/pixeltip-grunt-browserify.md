@@ -53,7 +53,7 @@ $(function() {
 ![詳細](http://manaten.net/wp-content/uploads/2014/03/pixel-tip_detail.png)
 
 # 使い方
-こんな感じのJSを書いて、画像に対してTipを表示するイベントハンドラを登録してやります。
+動作には[jQuery](http://jquery.com/)が必要です。こんな感じのJSを書いて、画像に対してTipを表示するイベントハンドラを登録してやります。
 
 ```html
 <link rel="stylesheet" type="text/css" media="all" href="http://manaten.net/repos/pixel-tip/dst/pixel-tip.css" />
