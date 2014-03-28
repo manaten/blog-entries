@@ -36,3 +36,6 @@ Evernote.sublime-settings
 ```
 
 以上です。
+
+# 参考
+[Syncing - Package Control](https://sublime.wbond.net/docs/syncing)
