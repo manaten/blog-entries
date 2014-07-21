@@ -14,7 +14,7 @@ ssh-agentのforwardを利用すると、例えばVM開発する上で、ホス�
 この、パスフレーズの入力を、シェルにログインした時の一回のみで済ませ、以後の入力を省いてくれるのが[ssh-agent](http://www.unixuser.org/~euske/doc/openssh/jman/ssh-agent.html)の仕事になります。Agentはパスフレーズ入力後に常駐し、以降の公開鍵認証が必要な場面で認証を代わりにやってくれるイメージです。
 
 
-# agent-forwardとは
+# forward-agentとは
 ホストマシンの```ssh-agent```をログイン先のマシンからも参照できる```ssh```の機能です。
 これを利用することで、githubなどいろいろなところに登録されたホストマシンの公開鍵を、ローカルVMからも利用することができ、開発の際に捗ります。
 
@@ -91,6 +91,13 @@ fi
 ```$SSH_AUTH_SOCK```が定義済みかつ、シンボリックリンクと異なる場合に、張り替えてあげるという処理を行います。
 
 同じ.zshrcをホストマシンでもローカルVMでも利用したかったため、無理やり混ぜ込んだ形になりました。
+
+# vagrantからの利用
+vagrantの```vagrant ssh```でVMにログインする場合、以下の記述をVagrantFileに追加することでForwardAgentが利用できるようです。
+
+```sh
+config.ssh.forward_agent = true
+```
 
 # 参考リンク
 - [SSH (1)](http://www.unixuser.org/~euske/doc/openssh/jman/ssh.html)
