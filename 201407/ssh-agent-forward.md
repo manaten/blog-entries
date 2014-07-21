@@ -53,7 +53,7 @@ fi
 2048 ### 省略 ### /home/mana/.ssh/id_rsa (RSA)
 ```
 
-## Agent forward
+## Forward Agent
 以上でagentが利用可能となっているシェルで、```ssh```の```-A```オプションまたは、sshのconfigで```ForwardAgent yes```を設定していると、ホストマシンの```ssh-agent```をログイン先でも利用できるようになります。
 
 ログイン先で```ssh-add -l```することで、ホストと同じ鍵を参照できることがわかります。
