@@ -1,3 +1,9 @@
+---
+title: ssh-agentのforwardを利用し、ホストマシンとローカルVMの非公開鍵を共有する
+date:  2014-07-22 12:00
+categories: [ssh, プログラミング]
+---
+
 ![](http://manaten.net/wp-content/uploads/2014/07/ssh_2.png)
 
 ssh-agentはずっと利用していたものの、agentのforwardという機能をつい最近まで知リませんでしたが、ローカルVM開発する上でかなり便利な機能でしたので書きます。
