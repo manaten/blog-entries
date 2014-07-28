@@ -114,7 +114,7 @@ function array_flatten(array $a) {
 
 ### 第三引数の省略に関して注意
 
-[マニュアル](http://php.net/manual/ja/function.array-reduce.php) を読むと第三引数を省略することでScalaの```reduce```の動きになるようなことが書いてあるが(JavaScriptの[reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)では引数の有無でそうなる)、実際は最初の値として```null```が渡ってくるだけのようであるので注意。基本的に第三引数の省略は行わないほうがいいと思う。
+[マニュアル](http://php.net/manual/ja/function.array-reduce.php) を読むと第三引数を省略することでScalaの```reduce```の動きになりそうなことが書いてあるが(JavaScriptの[reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)では引数の有無でそうなる)、実際は最初の値として```null```が渡ってくるだけのようであるので注意。基本的に第三引数の省略は行わないほうがいいと思う。
 
 ```php
 $nums = [1, 2, 3, 4, 5];
@@ -136,9 +136,11 @@ JavaScriptでは、省略時はScalaでいう```reduce```の動きになる。
 ```javascript
 [1,2,3].reduce(function(a, b){ return a * b; })
 >> 6
-[1,2,3].reduce(function(a,b){ return a * b; }, 100)
+[1,2,3].reduce(function(a, b){ return a * b; }, 100)
 >> 600
 ```
+
+このことにこの記事を書くことで気づけたのでよかった。
 
 # usort 系
 - [PHP: usort - Manual](http://php.net/manual/ja/function.usort.php)
