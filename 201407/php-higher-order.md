@@ -13,7 +13,7 @@ PHP5.3からクロージャが利用可能であり、高階関数を積極的�
 # array_map
 - [PHP: array_map - Manual](http://php.net/manual/ja/function.array-map.php)
 
-高階関数で最も代表的と思われるもの。配列の各要素を述語関数を用いたマッピングを行い、別の配列を作る。
+高階関数で最も代表的と思われるもの。map-reduceのmap。配列の各要素を述語関数を用いたマッピングを行い、別の配列を作る。
 
 ```php
 $prices = [100, 200, 300];
@@ -28,10 +28,32 @@ var_dump($taxInPrices);
 //   [2]=> float(324)
 // }
 ```
+他には、DB取得結果など、エンティティの配列みたいな形になっている時に、名前だけの配列がほしい場合などにも使う。
+
+```php
+$entities = [
+  ['id' => 25, 'name' => 'ピカチュウ'],
+  ['id' => 26, 'name' => 'ライチュウ'],
+  ['id' => 27, 'name' => 'サンド']
+];
+$names = array_map(function($entity) {
+  return $entity['name'];
+}, $entities);
+var_dump($names);
+
+// array(3) {
+//   [0]=> string(15) "ピカチュウ"
+//   [1]=> string(15) "ライチュウ"
+//   [2]=> string(9) "サンド"
+// }
+```
+
 
 また、PHPの```array_map```の面白いところは、引数配列を複数指定することが可能であり、その場合はScalaで言うところの```zipWith```関数の動きになるところ。これはつい最近まで知らなかった。
 
-```scala
+複数の配列の同じインデックスの要素それぞれを引数に取り、それらの要素を用いて値を返す述語関数を使うことで、複数配列を一つにまとめる。
+
+```php
 $lastNames = ['高坂', '南', '園田'];
 $firstNames = ['穂乃果', 'ことり', '海未'];
 
@@ -51,35 +73,83 @@ var_dump($fullNames);
 # array_reduce
 - [PHP: array_reduce - Manual](http://php.net/manual/ja/function.array-reduce.php)
 
-# usort / uasort/ uksort
+これもよく使うやつ。map-reduceのreduce。配列の各要素を順番に述語関数に適用し、適用結果を返す。
+
+```php
+$nums = [1, 2, 3, 4, 5];
+$prod = array_reduce($, function($c, $v) {
+  return $c * $v;
+});
+var_dump($prod);
+```
+
+第三引数を与えることで、Scalaの畳み込み(```fold```)の動きになる。
+
+```php
+$nums = [1, 2, 3, 4, 5];
+$prod = array_reduce($, function($c, $v) {
+  return $c * $v;
+}, 100);
+var_dump($prod);
+```
+
+応用例として、多重配列の平坦化の実装。
+```php
+function array_flatten(array $a) {
+  return array_reduce($a, function($c, $v) {
+    return array_merge($c, $v);
+  }, []);
+}
+var_dump(array_flatten([ [1,2,3], [4,5,6], [1,2] ]));
+// array(8) {
+//   [0]=> int(1)
+//   [1]=> int(2)
+//   [2]=> int(3)
+//   [3]=> int(4)
+//   [4]=> int(5)
+//   [5]=> int(6)
+//   [6]=> int(1)
+//   [7]=> int(2)
+// }
+```
+
+reduceの引数になっているクロージャは実質何もしていないので、次のようにも書ける(文字列をcallableとして渡すのに是非があるけども。)。
+```php
+function array_flatten(array $a) {
+  return array_reduce($a, 'array_merge', []);
+}
+```
+
+
+# usort 系
 - [PHP: usort - Manual](http://php.net/manual/ja/function.usort.php)
 - [PHP: uasort - Manual](http://php.net/manual/ja/function.uasort.php)
 - [PHP: uksort - Manual](http://php.net/manual/ja/function.uksort.php)
+
+
+ユニークな例として、キャラソートの例
 
 # array_filter
 [PHP: array_filter - Manual](http://php.net/manual/ja/function.array-filter.php)
 
 
 
-
-# array_diff_uassoc / array_diff_ukey
-- [PHP: array_diff_uassoc - Manual](http://php.net/manual/ja/function.array-diff-uassoc.php)
-- [PHP: array_diff_ukey - Manual](http://php.net/manual/ja/function.array-diff-ukey.php)
-
-# array_udiff / array_udiff_assoc / array_udiff_uassoc
+# array_diff 系
 - [PHP: array_udiff - Manual](http://php.net/manual/ja/function.array-udiff.php)
 - [PHP: array_udiff_assoc - Manual](http://php.net/manual/ja/function.array-udiff-assoc.php)
 - [PHP: array_udiff_uassoc - Manual](http://php.net/manual/ja/function.array-udiff-uassoc.php)
+- [PHP: array_diff_uassoc - Manual](http://php.net/manual/ja/function.array-diff-uassoc.php)
+- [PHP: array_diff_ukey - Manual](http://php.net/manual/ja/function.array-diff-ukey.php)
 
 
-# array_intersect_uassoc / array_intersect_ukey
-- [PHP: array_intersect_uassoc - Manual](http://php.net/manual/ja/function.array-intersect-uassoc.php)
-- [PHP: array_intersect_ukey - Manual](http://php.net/manual/ja/function.array-intersect-ukey.php)
 
-# array_uintersect / array_uintersect_assoc / array_uintersect_uassoc
+# array_intersect 系
 - [PHP: array_uintersect - Manual](http://php.net/manual/ja/function.array-uintersect.php)
 - [PHP: array_uintersect_assoc - Manual](http://php.net/manual/ja/function.array-uintersect-assoc.php)
 - [PHP: array_uintersect_uassoc - Manual](http://php.net/manual/ja/function.array-uintersect-uassoc.php)
+- [PHP: array_intersect_uassoc - Manual](http://php.net/manual/ja/function.array-intersect-uassoc.php)
+- [PHP: array_intersect_ukey - Manual](http://php.net/manual/ja/function.array-intersect-ukey.php)
+
 
 # array_walk
 - [PHP: array_walk - Manual](http://php.net/manual/ja/function.array-walk.php)
