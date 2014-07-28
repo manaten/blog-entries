@@ -74,16 +74,7 @@ var_dump($fullNames);
 - [PHP: array_reduce - Manual](http://php.net/manual/ja/function.array-reduce.php)
 
 これもよく使うやつ。map-reduceのreduce。配列の各要素を順番に述語関数に適用し、適用結果を返す。
-
-```php
-$nums = [1, 2, 3, 4, 5];
-$prod = array_reduce($, function($c, $v) {
-  return $c * $v;
-});
-var_dump($prod);
-```
-
-第三引数を与えることで、Scalaの畳み込み(```fold```)の動きになる。
+Scalaの畳み込み(```fold```)。
 
 ```php
 $nums = [1, 2, 3, 4, 5];
@@ -120,6 +111,33 @@ function array_flatten(array $a) {
 }
 ```
 
+### 第三引数の省略に関して注意
+
+マニュアルを読むと第三引数を省略することでScalaの```reduce```の動きになるようなことが書いてあるが(JavaScriptの[reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)では引数の有無でそうなる)、実際は最初の値として```null```が渡ってくるだけのようであるので注意。基本的に第三引数の省略は行わないほうがいいと思う。
+
+```php
+$nums = [1, 2, 3, 4, 5];
+$prod = array_reduce($nums, function($c, $v) {
+  var_dump($c);
+  return $c * $v;
+});
+// NULL
+// int(0)
+// int(0)
+// int(0)
+// int(0)
+
+var_dump($prod);
+// int(0)
+```
+
+JavaScriptでは、Scalaでいう```reduce```の動きになる。
+```javascript
+[1,2,3].reduce(function(a, b){ return a * b; })
+>> 6
+[1,2,3].reduce(function(a,b){ return a * b; }, 100)
+>> 600
+```
 
 # usort 系
 - [PHP: usort - Manual](http://php.net/manual/ja/function.usort.php)
