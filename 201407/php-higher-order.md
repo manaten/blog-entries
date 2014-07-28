@@ -82,6 +82,7 @@ $prod = array_reduce($, function($c, $v) {
   return $c * $v;
 }, 100);
 var_dump($prod);
+// int(12000)
 ```
 
 応用例として、多重配列の平坦化の実装。
