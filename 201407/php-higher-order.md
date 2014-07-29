@@ -13,7 +13,7 @@ PHP5.3からクロージャが利用可能であり、高階関数を積極的�
 # array_map
 - [PHP: array_map - Manual](http://php.net/manual/ja/function.array-map.php)
 
-高階関数で最も代表的と思われるもの。map-reduceのmap。配列の各要素を述語関数を用いたマッピングを行い、別の配列を作る。
+高階関数で最も代表的と思われるもの。map-reduceのmap。配列の各要素を述語関数を用いたマッピングを行い、別の配列を作ります。
 
 ```php
 $prices = [100, 200, 300];
@@ -28,7 +28,7 @@ var_dump($taxInPrices);
 //   [2]=> float(324)
 // }
 ```
-他には、DB取得結果など、エンティティの配列みたいな形になっている時に、名前だけの配列がほしい場合などにも使う。
+他には、DB取得結果など、エンティティの配列みたいな形になっている時に、名前だけの配列がほしい場合などにも使います。
 
 ```php
 $entities = [
@@ -49,9 +49,9 @@ var_dump($names);
 ```
 
 
-また、PHPの```array_map```の面白いところは、引数配列を複数指定することが可能であり、その場合はScalaで言うところの```zipWith```関数の動きになるところ。これはつい最近まで知らなかった。
+また、PHPの```array_map```の面白いところは、引数配列を複数指定することが可能であり、その場合はScalaで言うところの```zipWith```関数の動きになるところ。これはつい最近まで知りませんでした。
 
-複数の配列の同じインデックスの要素それぞれを引数に取り、それらの要素を用いて値を返す述語関数を使うことで、複数配列を一つにまとめる。
+複数の配列の同じインデックスの要素それぞれを引数に取り、それらの要素を用いて値を返す述語関数を使うことで、複数配列を一つにまとめられます。
 
 ```php
 $lastNames = ['高坂', '南', '園田'];
@@ -73,8 +73,8 @@ var_dump($fullNames);
 # array_reduce
 - [PHP: array_reduce - Manual](http://php.net/manual/ja/function.array-reduce.php)
 
-これもよく使うやつ。map-reduceのreduce。配列の各要素を順番に述語関数に適用し、適用結果を返す。
-Scalaの畳み込み(```fold```)。
+これもよく使うやつ。map-reduceのreduce。配列の各要素を順番に述語関数に適用し、適用結果を返します。
+Scalaでいうところの畳み込み(```fold```)。
 
 ```php
 $nums = [1, 2, 3, 4, 5];
@@ -105,7 +105,7 @@ var_dump(array_flatten([ [1,2,3], [4,5,6], [1,2] ]));
 // }
 ```
 
-reduceの引数になっているクロージャは実質何もしていないので、次のようにも書ける(文字列をcallableとして渡すのに是非があるけども。)。
+reduceの引数になっているクロージャは実質何もしていないので、次のようにも書けます(文字列をcallableとして渡すのに是非があるけども。)。
 ```php
 function array_flatten(array $a) {
   return array_reduce($a, 'array_merge', []);
@@ -114,7 +114,7 @@ function array_flatten(array $a) {
 
 ### 第三引数の省略に関して注意
 
-[マニュアル](http://php.net/manual/ja/function.array-reduce.php) を読むと第三引数を省略することでScalaの```reduce```の動きになりそうなことが書いてあるが(JavaScriptの[reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)では引数の有無でそうなる)、実際は最初の値として```null```が渡ってくるだけのようであるので注意。基本的に第三引数の省略は行わないほうがいいと思う。
+[マニュアル](http://php.net/manual/ja/function.array-reduce.php) を読むと第三引数を省略することでScalaの```reduce```の動きになりそうなことが書いてあるが(JavaScriptの[reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)では引数の有無でそうなる)、実際は最初の値として```null```が渡ってくるだけのようであるので注意。基本的に第三引数の省略は行わないほうがいいと思います。
 
 ```php
 $nums = [1, 2, 3, 4, 5];
@@ -132,7 +132,7 @@ var_dump($prod);
 // int(0)
 ```
 
-JavaScriptでは、省略時はScalaでいう```reduce```の動きになる。
+JavaScriptでは、省略時はScalaでいう```reduce```の動きになります。
 ```javascript
 [1,2,3].reduce(function(a, b){ return a * b; })
 >> 6
@@ -140,7 +140,7 @@ JavaScriptでは、省略時はScalaでいう```reduce```の動きになる。
 >> 600
 ```
 
-このことにこの記事を書くことで気づけたのでよかった。
+このことにこのエントリを書くことで気づけたのでよかったです。
 
 # usort 系
 - [PHP: usort - Manual](http://php.net/manual/ja/function.usort.php)
