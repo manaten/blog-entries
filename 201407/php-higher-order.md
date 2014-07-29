@@ -147,8 +147,77 @@ JavaScriptでは、省略時はScalaでいう```reduce```の動きになりま�
 - [PHP: uasort - Manual](http://php.net/manual/ja/function.uasort.php)
 - [PHP: uksort - Manual](http://php.net/manual/ja/function.uksort.php)
 
+配列ソート時の比較方法を述語関数として指定できるものです。
+連想配列の場合にキーを保持するuasort、キーを用いてソートするuksortという亜種があります。
 
-ユニークな例として、キャラソートの例
+オリジナルの構造をソートしたい場合がよく使うシチュエーションかと思います。
+
+```php
+$entities = [
+  ['id' => 26, 'name' => 'ライチュウ'],
+  ['id' => 27, 'name' => 'サンド'],
+  ['id' => 25, 'name' => 'ピカチュウ'],
+];
+usort($entities, function($a, $b) {
+  return $a['id'] - $b['id'];
+});
+var_dump($entities);
+
+// array(3) {
+//   [0]=> array(2) {
+//     ["id"]=> int(25)
+//     ["name"]=> string(15) "ピカチュウ"
+//   }
+//   [1]=> array(2) {
+//     ["id"]=> int(26)
+//     ["name"]=> string(15) "ライチュウ"
+//   }
+//   [2]=> array(2) {
+//     ["id"]=> int(27)
+//     ["name"]=> string(9) "サンド"
+//   }
+// }
+```
+
+
+ユニークな応用例として、[東方キャラソート](http://mainyan.sakura.ne.jp/thsort.html)のような、ユーザー選択によるキャラクターソートを、述語関数をユーザー入力にすることで実装できます。
+
+```php
+$charList = [
+  '秋 静葉',
+  '秋 穣子',
+  '鍵山 雛',
+  '河城 にとり',
+  '犬走 椛',
+  '東風谷 早苗',
+  '八坂 神奈子',
+  '洩矢 諏訪子'
+];
+usort($charList, function($a, $b) {
+  echo "どちらが好き？ (a/b)\na. $a\nb. $b\n";
+  while (!in_array($input = trim(fgets(STDIN)), ['a', 'b']));
+  return $input === 'a' ? -1 : 1;
+});
+var_dump($charList);
+
+// ...
+// どちらが好き？ (a/b)
+// a. 八坂 神奈子
+// b. 秋 静葉
+// b
+// array(8) {
+//   [0]=> string(10) "鍵山 雛"
+//   [1]=> string(10) "秋 穣子"
+//   [2]=> string(10) "犬走 椛"
+//   [3]=> string(16) "河城 にとり"
+//   [4]=> string(16) "洩矢 諏訪子"
+//   [5]=> string(10) "秋 静葉"
+//   [6]=> string(16) "八坂 神奈子"
+//   [7]=> string(16) "東風谷 早苗"
+// }
+```
+
+ソートがどう動いているのか体感できるので、意外と面白いです。
 
 # array_filter
 [PHP: array_filter - Manual](http://php.net/manual/ja/function.array-filter.php)
@@ -172,8 +241,6 @@ JavaScriptでは、省略時はScalaでいう```reduce```の動きになりま�
 - [PHP: array_intersect_ukey - Manual](http://php.net/manual/ja/function.array-intersect-ukey.php)
 
 
-# array_walk
+# array_walk, array_walk_recursive
 - [PHP: array_walk - Manual](http://php.net/manual/ja/function.array-walk.php)
-
-# array_walk_recursive
 - [PHP: array_walk_recursive - Manual](http://php.net/manual/ja/function.array-walk-recursive.php)
