@@ -13,7 +13,7 @@ PHP5.3からクロージャが利用可能であり、高階関数を積極的�
 # array_map
 - [PHP: array_map - Manual](http://php.net/manual/ja/function.array-map.php)
 
-高階関数で最も代表的と思われるもの。map-reduceのmap。配列の各要素を述語関数を用いたマッピングを行い、別の配列を作ります。
+高階関数で最も代表的と思われるもの。map-reduceのmap。配列の各要素をクロージャを用いたマッピングを行い、別の配列を作ります。
 
 ```php
 $prices = [100, 200, 300];
@@ -51,7 +51,7 @@ var_dump($names);
 
 また、PHPの```array_map```の面白いところは、引数配列を複数指定することが可能であり、その場合はScalaで言うところの```zipWith```関数の動きになるところ。これはつい最近まで知りませんでした。
 
-複数の配列の同じインデックスの要素それぞれを引数に取り、それらの要素を用いて値を返す述語関数を使うことで、複数配列を一つにまとめられます。
+複数の配列の同じインデックスの要素それぞれを引数に取り、それらの要素を用いて値を返すクロージャを使うことで、複数配列を一つにまとめられます。
 
 ```php
 $lastNames = ['高坂', '南', '園田'];
@@ -73,7 +73,7 @@ var_dump($fullNames);
 # array_reduce
 - [PHP: array_reduce - Manual](http://php.net/manual/ja/function.array-reduce.php)
 
-これもよく使うやつ。map-reduceのreduce。配列の各要素を順番に述語関数に適用し、適用結果を返します。
+これもよく使うやつ。map-reduceのreduce。配列の各要素を順番にクロージャに適用し、適用結果を返します。
 Scalaでいうところの畳み込み(```fold```)。
 
 ```php
@@ -147,7 +147,7 @@ JavaScriptでは、省略時はScalaでいう```reduce```の動きになりま�
 - [PHP: uasort - Manual](http://php.net/manual/ja/function.uasort.php)
 - [PHP: uksort - Manual](http://php.net/manual/ja/function.uksort.php)
 
-配列ソート時の比較方法を述語関数として指定できるものです。
+配列ソート時の比較方法をクロージャとして指定できるものです。
 連想配列の場合にキーを保持するuasort、キーを用いてソートするuksortという亜種があります。
 
 オリジナルの構造をソートしたい場合がよく使うシチュエーションかと思います。
@@ -180,7 +180,7 @@ var_dump($entities);
 ```
 
 
-ユニークな応用例として、[東方キャラソート](http://mainyan.sakura.ne.jp/thsort.html)のような、ユーザー選択によるキャラクターソートを、述語関数をユーザー入力にすることで実装できます。
+ユニークな応用例として、[東方キャラソート](http://mainyan.sakura.ne.jp/thsort.html)のようなユーザー選択によるキャラクターソートを、クロージャをユーザー入力にすることで実装できます。
 
 ```php
 $charList = [
@@ -221,6 +221,7 @@ var_dump($charList);
 
 # array_filter
 [PHP: array_filter - Manual](http://php.net/manual/ja/function.array-filter.php)
+
 
 
 
