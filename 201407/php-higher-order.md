@@ -16,6 +16,7 @@ PHP5.3からクロージャが利用可能であり、高階関数を積極的�
 高階関数で最も代表的と思われるもの。map-reduceのmap。配列の各要素をクロージャを用いたマッピングを行い、別の配列を作ります。
 
 ```php
+<?php
 $prices = [100, 200, 300];
 $taxInPrices = array_map(function($price) {
   return $price * 1.08;
@@ -28,9 +29,10 @@ var_dump($taxInPrices);
 //   [2]=> float(324)
 // }
 ```
-他には、DB取得結果など、エンティティの配列みたいな形になっている時に、名前だけの配列がほしい場合などにも使います。
+他には、DB取得結果など、エンティティの配列みたいな形になっている時に、特定要素の配列がほしい場合などにも使います。
 
 ```php
+<?php
 $entities = [
   ['id' => 25, 'name' => 'ピカチュウ'],
   ['id' => 26, 'name' => 'ライチュウ'],
@@ -54,6 +56,7 @@ var_dump($names);
 複数の配列の同じインデックスの要素それぞれを引数に取り、それらの要素を用いて値を返すクロージャを使うことで、複数配列を一つにまとめられます。
 
 ```php
+<?php
 $lastNames = ['高坂', '南', '園田'];
 $firstNames = ['穂乃果', 'ことり', '海未'];
 
@@ -77,6 +80,7 @@ var_dump($fullNames);
 Scalaでいうところの畳み込み(```fold```)。
 
 ```php
+<?php
 $nums = [1, 2, 3, 4, 5];
 $prod = array_reduce($, function($c, $v) {
   return $c * $v;
@@ -87,6 +91,7 @@ var_dump($prod);
 
 応用例として、多重配列の平坦化の実装。
 ```php
+<?php
 function array_flatten(array $a) {
   return array_reduce($a, function($c, $v) {
     return array_merge($c, $v);
@@ -107,6 +112,7 @@ var_dump(array_flatten([ [1,2,3], [4,5,6], [1,2] ]));
 
 reduceの引数になっているクロージャは実質何もしていないので、次のようにも書けます(文字列をcallableとして渡すのに是非があるけども。)。
 ```php
+<?php
 function array_flatten(array $a) {
   return array_reduce($a, 'array_merge', []);
 }
@@ -117,6 +123,7 @@ function array_flatten(array $a) {
 [マニュアル](http://php.net/manual/ja/function.array-reduce.php) を読むと第三引数を省略することでScalaの```reduce```の動きになりそうなことが書いてあるが(JavaScriptの[reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)では引数の有無でそうなる)、実際は最初の値として```null```が渡ってくるだけのようであるので注意。基本的に第三引数の省略は行わないほうがいいと思います。
 
 ```php
+<?php
 $nums = [1, 2, 3, 4, 5];
 $prod = array_reduce($nums, function($c, $v) {
   var_dump($c);
@@ -153,6 +160,7 @@ JavaScriptでは、省略時はScalaでいう```reduce```の動きになりま�
 オリジナルの構造をソートしたい場合がよく使うシチュエーションかと思います。
 
 ```php
+<?php
 $entities = [
   ['id' => 26, 'name' => 'ライチュウ'],
   ['id' => 27, 'name' => 'サンド'],
@@ -183,6 +191,7 @@ var_dump($entities);
 ユニークな応用例として、[東方キャラソート](http://mainyan.sakura.ne.jp/thsort.html)のようなユーザー選択によるキャラクターソートを、クロージャをユーザー入力にすることで実装できます。
 
 ```php
+<?php
 $charList = [
   '秋 静葉',
   '秋 穣子',
@@ -225,6 +234,7 @@ var_dump($charList);
 各要素に対して真偽値を返すクロージャをとり、配列をフィルタリングします。
 
 ```php
+<?php
 $nums = [1, 2, 3, 4, 5];
 $filtered = array_filter($nums, function($v) {
   return $v % 2 === 0;
@@ -250,6 +260,7 @@ var_dump($filtered);
 亜種は、比較対象を値ではなくキーにするだとか、なんとかでいろいろあるけど多すぎてよくわからない。ドキュメント読んでもイマイチイメージつきづらい。ので実行してみる。
 
 ```php
+<?php
 $as = [
   'A' => 'aaa',
   'B' => 'bbb',
@@ -381,18 +392,20 @@ array(2) {
 まず、実行するまで誤解していたのですが、array_diffでは2つの配列の差を計算しますが、この差というのは片方にしかないものという意味ではなく、 **第一引数にのみ存在するもの** という意味のようです。亜種のドキュメントには曖昧に書いてありますが、[array_diff](http://php.net/manual/ja/function.array-diff.php) のマニュアルにはしっかり書いてありました。
 
 それぞれ実行結果を見てみると、
+
 - array_udiffでは値を比較している
 - array_udiff_assocでは、キーが一致するもののみコールバック関数を用いた値比較をしている
 - array_udiff_uassocでは、キーを第四引数のコールバック関数で比較し、一致したものは次に値を第三引数のコールバック関数で比較している(第三引数が値比較、第四引数がキー比較用の関数)。
 - array_diff_ukey では、キーを比較している
 - array_diff_uassocでは、キーをコールバック関数で比較したのち、値を通常の方法で比較しているっぽい(結果値から判断)
 
-また、もうひとつ重要な性質として、結果値の要素は第一引数の配列のものになるようです(まあ第一引数にのみ存在するものなので当然)。
+また、もうひとつ重要な性質として、結果値の要素は第一引数の配列のものになるようです(第一引数にのみ存在する要素なので当然)。
 
 正直、動作がちょっと紛らわしいため、これらを用いるよりはarray_mapなどで変換した配列を通常のarray_diffで比較するほうがわかりやすいコードが書けるのではと思います。
 
 
 # array_intersect 系
+
 - [PHP: array_uintersect - Manual](http://php.net/manual/ja/function.array-uintersect.php)
 - [PHP: array_uintersect_assoc - Manual](http://php.net/manual/ja/function.array-uintersect-assoc.php)
 - [PHP: array_uintersect_uassoc - Manual](http://php.net/manual/ja/function.array-uintersect-uassoc.php)
