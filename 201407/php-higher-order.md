@@ -1,8 +1,8 @@
----
+<!--
 title: PHPで利用できる配列操作系高階関数
 date:  2014-07-28 12:00
 categories: [PHP, プログラミング]
----
+-->
 
 ~[](http://manaten.net/wp-content/uploads/2014/07/higher-order_2.png)
 
@@ -222,7 +222,20 @@ var_dump($charList);
 # array_filter
 [PHP: array_filter - Manual](http://php.net/manual/ja/function.array-filter.php)
 
+各要素に対して真偽値を返すクロージャをとり、配列をフィルタリングします。
 
+```php
+$nums = [1, 2, 3, 4, 5];
+$filtered = array_filter($nums, function($v) {
+  return $v % 2 === 0;
+});
+var_dump($filtered);
+// array(2) {
+//   [1]=> int(2)
+//   [3]=> int(4)
+// }
+```
+これもこのエントリのために動かして気づいたのですが、配列の添字がそのままになるみたいです。通常は気にする必要はなさそうですが、罠になることもありそうです。
 
 
 # array_diff 系
@@ -232,6 +245,151 @@ var_dump($charList);
 - [PHP: array_diff_uassoc - Manual](http://php.net/manual/ja/function.array-diff-uassoc.php)
 - [PHP: array_diff_ukey - Manual](http://php.net/manual/ja/function.array-diff-ukey.php)
 
+[array_diff](http://php.net/manual/ja/function.array-diff.php) の比較方法をクロージャで指定できる版([array_udiff](http://php.net/manual/ja/function.array-udiff.php)) と、その亜種。2つの配列の差分を計算します。
+
+亜種は、比較対象を値ではなくキーにするだとか、なんとかでいろいろあるけど多すぎてよくわからない。ドキュメント読んでもイマイチイメージつきづらい。ので実行してみる。
+
+```php
+$as = [
+  'A' => 'aaa',
+  'B' => 'bbb',
+  'C' => 'ccc',
+];
+$bs = [
+  'B' => 'www',
+  'C' => 'ccc',
+  'D' => 'ddd',
+];
+
+echo "== array_udiff ==\n";
+var_dump(array_udiff($as, $bs, function($a, $b) {
+  echo "$a, $b\n";
+  return strcmp($a, $b);
+}));
+
+echo "== array_udiff_assoc ==\n";
+var_dump(array_udiff_assoc($as, $bs, function($a, $b) {
+  echo "$a, $b\n";
+  return strcmp($a, $b);
+}));
+
+echo "== array_udiff_uassoc ==\n";
+var_dump(array_udiff_uassoc($as, $bs, function($a, $b) {
+  echo "1: $a, $b\n";
+  return strcmp($a, $b);
+}, function($a, $b) {
+  echo "2: $a, $b\n";
+  return strcmp($a, $b);
+}));
+
+echo "== array_diff_ukey ==\n";
+var_dump(array_diff_ukey($as, $bs, function($a, $b) {
+  echo "$a, $b\n";
+  return strcmp($a, $b);
+}));
+
+echo "== array_diff_uassoc ==\n";
+var_dump(array_diff_uassoc($as, $bs, function($a, $b) {
+  echo "$a, $b\n";
+  return strcmp($a, $b);
+}));
+```
+
+結果
+```
+== array_udiff ==
+bbb, aaa
+ccc, bbb
+ccc, www
+ddd, ccc
+www, ccc
+ddd, www
+aaa, ccc
+aaa, bbb
+bbb, ccc
+bbb, ccc
+ccc, ccc
+array(2) {
+  ["A"]=>
+  string(3) "aaa"
+  ["B"]=>
+  string(3) "bbb"
+}
+== array_udiff_assoc ==
+bbb, www
+ccc, ccc
+array(2) {
+  ["A"]=>
+  string(3) "aaa"
+  ["B"]=>
+  string(3) "bbb"
+}
+== array_udiff_uassoc ==
+2: B, A
+2: C, B
+2: C, B
+2: D, C
+2: A, B
+2: A, C
+2: A, D
+2: B, B
+1: bbb, www
+2: C, B
+2: C, C
+1: ccc, ccc
+array(2) {
+  ["A"]=>
+  string(3) "aaa"
+  ["B"]=>
+  string(3) "bbb"
+}
+== array_diff_ukey ==
+B, A
+C, B
+C, B
+D, C
+A, B
+A, C
+A, D
+B, B
+C, B
+C, C
+array(1) {
+  ["A"]=>
+  string(3) "aaa"
+}
+== array_diff_uassoc ==
+B, A
+C, B
+C, B
+D, C
+A, B
+A, C
+A, D
+B, B
+C, B
+C, C
+array(2) {
+  ["A"]=>
+  string(3) "aaa"
+  ["B"]=>
+  string(3) "bbb"
+}
+
+```
+
+まず、実行するまで誤解していたのですが、array_diffでは2つの配列の差を計算しますが、この差というのは片方にしかないものという意味ではなく、 **第一引数にのみ存在するもの** という意味のようです。亜種のドキュメントには曖昧に書いてありますが、[array_diff](http://php.net/manual/ja/function.array-diff.php) のマニュアルにはしっかり書いてありました。
+
+それぞれ実行結果を見てみると、
+- array_udiffでは値を比較している
+- array_udiff_assocでは、キーが一致するもののみコールバック関数を用いた値比較をしている
+- array_udiff_uassocでは、キーを第四引数のコールバック関数で比較し、一致したものは次に値を第三引数のコールバック関数で比較している(第三引数が値比較、第四引数がキー比較用の関数)。
+- array_diff_ukey では、キーを比較している
+- array_diff_uassocでは、キーをコールバック関数で比較したのち、値を通常の方法で比較しているっぽい(結果値から判断)
+
+また、もうひとつ重要な性質として、結果値の要素は第一引数の配列のものになるようです(まあ第一引数にのみ存在するものなので当然)。
+
+正直、動作がちょっと紛らわしいため、これらを用いるよりはarray_mapなどで変換した配列を通常のarray_diffで比較するほうがわかりやすいコードが書けるのではと思います。
 
 
 # array_intersect 系
@@ -241,7 +399,19 @@ var_dump($charList);
 - [PHP: array_intersect_uassoc - Manual](http://php.net/manual/ja/function.array-intersect-uassoc.php)
 - [PHP: array_intersect_ukey - Manual](http://php.net/manual/ja/function.array-intersect-ukey.php)
 
+[array_intersect](http://php.net/manual/ja/function.array-intersect.php)の愉快な仲間たち。先述したarray_diffと同じ種類の亜種がいます(キーで比較するか、値で比較するか、両方で比較するか、比較にコールバックを使うか)。
+
+第一引数の配列の要素をすべて持つ第二引数以降の配列を返すようです。あまり使い道が思いつかないため割愛。
 
 # array_walk, array_walk_recursive
 - [PHP: array_walk - Manual](http://php.net/manual/ja/function.array-walk.php)
 - [PHP: array_walk_recursive - Manual](http://php.net/manual/ja/function.array-walk-recursive.php)
+
+配列の要素すべてをコールバック関数に渡すarray_walkと、再帰的にそれを行うarray_walk_recursive。
+値を返す関数ではないので、コールバック関数は副作用を伴う必要があります。
+そういう意味で、array_walkはforeachやarray_mapを使わずにこちらを使う意味があまり見出せません。
+再帰処理をするarray_walk_recursiveはまだ使える場面はありそうですが、やはり副作用を伴うというところで敬遠したいです。
+
+# おわり
+以上です。
+後半どうでも良い関数が続いてしまったため、モチベーションが下がり、array_filterまでは一ヶ月前に書いていたのに投稿が遅れてしまった･･･。
