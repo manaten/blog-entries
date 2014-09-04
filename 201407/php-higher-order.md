@@ -4,7 +4,7 @@ date:  2014-07-28 12:00
 categories: [PHP, プログラミング]
 -->
 
-~[](http://manaten.net/wp-content/uploads/2014/07/higher-order_2.png)
+![](http://manaten.net/wp-content/uploads/2014/07/higher-order_2.png)
 
 PHP5.3からクロージャが利用可能であり、高階関数を積極的に利用して簡潔なコードを心がけたいのですが、一度調べておかないと意外な関数が利用可能であることに気づかなかったりするのでまとめ(個人的によく使う順)。
 
