@@ -1,8 +1,10 @@
 <!--
 title: Hubotでbotの反応する部屋やユーザーに制限を設ける
 date:  2015-1-xx 12:00
-categories: [Hubot]
+categories: [Hubot, メモ, CoffeeScript]
 -->
+
+![Hubotでbotの反応する部屋やユーザーに制限を設ける](http://manaten.net/wp-content/uploads/2014/04/hubot.gif)
 
 
 少し前に [slackでbotアカウントが作れる](http://slackhq.com/post/104688116560/rtm-api)ようになり、それまで [IRC Gateway](https://slack.zendesk.com/hc/en-us/articles/201727913-Connecting-to-Slack-over-IRC-and-XMPP) で動作させていたSlack上のbotを [hubot-slack](https://github.com/slackhq/hubot-slack) を利用したbotアカウントによるbotに乗り換えました。
@@ -14,9 +16,11 @@ categories: [Hubot]
 
 そこで、特定の条件でbotの発言を抑制するスクリプトを書きました。
 
+<!-- more -->
+
 # コード
 
-```coffeescript
+```javascript
 _ = require 'lodash'
 
 module.exports = (robot) ->
@@ -47,8 +51,6 @@ module.exports = (robot) ->
 3. ユーザー名にbotという文字列を含む場合は反応しない
 
 というルールにしました(実際は配列の部分は [node-config](https://github.com/lorenwest/node-config) から取得するようにし、カスタマイズ可能にしてあります。)。
-
-
 
 
 # 参考リンク
