@@ -7,3 +7,4 @@
 - [RaspberryPi - Raspberry Pi + 無線LAN セットアップ - Qiita](http://qiita.com/daicham/items/e24ce76f8815d339d070)
 
 - [manaten/irMagician](https://github.com/manaten/irMagician)
+http://www.google.co.jp/imgres?imgurl=http://madeinokinawa.com/wp/wp-content/uploads/b8df096cd98afddafbc92f909054da68.jpg&imgrefurl=http://madeinokinawa.com/?page_id%3D4940&h=1133&w=1600&tbnid=c4BWnalNPzGyYM:&zoom=1&docid=ULv12Z7e4IraNM&ei=ZMXEVLKOOo_j8AX9s4LQCw&tbm=isch&ved=0CH4QMyhUMFQ
