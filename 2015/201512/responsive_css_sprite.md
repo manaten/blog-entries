@@ -88,6 +88,9 @@ background-sizeとbackground-positionを % で指定し、ボックスの幅に�
 <div class="sprite-demo__button3">ボタン3</div>
 </div>
 
+利用例を含めたコードの全体は、 [manaten/responsive-css-sprite-demo](https://github.com/manaten/responsive-css-sprite-demo) にあります。
+
+
 # コーディング
 
 [gulp-spritesmith](https://www.npmjs.com/package/gulp-spritesmith) と
@@ -164,7 +167,8 @@ button1～3はそれを適用し、さらにデモのために `width` を異な
 }
 ```
 
-以下で詳しく見ていきます。
+以下で詳しく見ていきます。各指定について長い説明になってしまっているので、どうしてこういう指定になっているのか気にならない人は飛ばしてしまっても問題無いです。
+
 
 # 要素のサイズによってスプライトの表示サイズを可変にする
 
