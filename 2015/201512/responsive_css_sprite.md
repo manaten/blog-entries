@@ -21,7 +21,7 @@ background-sizeとbackground-positionを % で指定し、ボックスの幅に�
 
 ![レスポンシブなCSSスプライト](http://manaten.net/wp-content/uploads/2015/12/sprite.png)
 
-[gulp-spritesmith](https://www.npmjs.com/package/gulp-spritesmith) で作成した適当なスプライシートです。
+[gulp-spritesmith](https://www.npmjs.com/package/gulp-spritesmith) で作成した適当なスプライトシートです。
 
 
 ### スプライトの利用例
