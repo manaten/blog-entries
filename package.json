@@ -1,0 +1,30 @@
+{
+  "name": "blog-entries",
+  "version": "0.0.1",
+  "description": "blog.manaten.net entries.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "textlint": "6.8.0",
+    "textlint-rule-preset-japanese": "1.3.0",
+    "textlint-rule-preset-jtf-style": "2.2.0"
+  },
+  "scripts": {
+    "test": "textlint entries/2016"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manaten/blog-entries.git"
+  },
+  "keywords": [
+    "blog",
+    "entry"
+  ],
+  "private": true,
+  "author": "manaten <manaten@manaten.net> (http://manaten.net/)",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/manaten/blog-entries/issues"
+  },
+  "homepage": "https://github.com/manaten/blog-entries#readme"
+}
