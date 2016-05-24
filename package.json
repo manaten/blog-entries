@@ -10,6 +10,7 @@
     "textlint-rule-preset-jtf-style": "2.2.0"
   },
   "scripts": {
+    "fix": "npm -s test -- --fix",
     "test": "textlint entries/2016"
   },
   "repository": {
