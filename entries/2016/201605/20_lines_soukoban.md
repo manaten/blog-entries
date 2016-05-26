@@ -5,7 +5,7 @@ categories: [CoffeeScript,プログラミング,正規表現]
 -->
 
 
-![文字列置換により20行程度で実装する倉庫番ゲームのミニマム実装](http://manaten.net/wp-content/uploads/TODO)
+![文字列置換により20行程度で実装する倉庫番ゲームのミニマム実装](http://manaten.net/wp-content/uploads/2016/05/soukoban_pixel.gif)
 
 先日、[Slack上でインタラクティブに倉庫番を遊べるhubot-slack-soukobanを作った](http://blog.manaten.net/entry/hubot-slack-soukoban)にてSlack上で遊べる倉庫番の紹介を行いました。
 このhubotスクリプトでは文字列置換による実装を駆使して倉庫番のゲームロジック部分が20行程度で実装されており、今回はその実装について解説をします。
