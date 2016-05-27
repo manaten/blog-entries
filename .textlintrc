@@ -1,8 +1,6 @@
 {
   "rules": {
     "preset-jtf-style": true,
-    "preset-japanese": {
-      "no-doubled-conjunction": false
-    }
+    "preset-japanese": true
   }
 }
