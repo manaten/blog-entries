@@ -50,6 +50,11 @@ Slackでインタラクティブゲームを作るというネタが本来の目
 
 興味がある方は [こちら](https://github.com/manaten/hubot-slack-soukoban/blob/master/src/index.coffee#L27) を見ていただけると幸いです。
 
+### 追記
+
+[文字列置換により20行程度で実装する倉庫番ゲームのミニマム実装 - MANA-DOT](http://blog.manaten.net/entry/20_lines_soukoban) にて、この実装についての紹介を書きました。
+
+
 # 感想
 
 この手法を使えばいろんなゲームをSlack上で実現できそうです。
@@ -66,3 +71,4 @@ Slackでインタラクティブゲームを作るというネタが本来の目
 - [github/hubot](https://github.com/github/hubot)
 - [slackhq/hubot-slack](https://github.com/slackhq/hubot-slack)
 - [manaten/hubot-slack-soukoban](https://www.npmjs.com/package/hubot-slack-soukoban)
+- [文字列置換により20行程度で実装する倉庫番ゲームのミニマム実装 - MANA-DOT](http://blog.manaten.net/entry/20_lines_soukoban) 
