@@ -8,7 +8,7 @@ categories: [git,github]
 ![すべてのリポジトリでgithubのpull requestをfetchする設定](http://manaten.net/wp-content/uploads/2015/05/octcat.gif)
 
 
-[githubのプルリクエストのコミットをローカルにfetchする方法]((https://gist.github.com/piscisaureus/3342247))はよく知らてていますが
+[githubのプルリクエストのコミットをローカルにfetchする方法](https://gist.github.com/piscisaureus/3342247)はよく知らてていますが
 (知らない人は是非設定をオススメします。特にコードレビューでレビュー相手がfork先からプルリクエストを出している場合でも対象コミットを取得できるため便利です）、
 この方法はリポジトリごとに毎回設定する必要があり多少面倒です。
 
