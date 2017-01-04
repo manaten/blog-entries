@@ -12,7 +12,7 @@
   "scripts": {
     "fix": "npm -s test -- --fix",
     "test": "textlint entries/2016",
-    "sync": "rsync -av -e ssh images/ www.manaten:blog.manaten.net/wp-content/uploads"
+    "sync": "gsutil rsync -R images/ gs://manaten.net/wp-content/uploads"
   },
   "repository": {
     "type": "git",
